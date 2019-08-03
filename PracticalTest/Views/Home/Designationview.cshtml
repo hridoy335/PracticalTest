@@ -1,0 +1,42 @@
+﻿@model IEnumerable<PracticalTest.Models.TblDesignation>
+
+@{
+    ViewBag.Title = "Designationview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Designationview</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Designation","Home")
+</p>
+<table class="table">
+    <tr>
+     
+        <th>
+            @Html.DisplayNameFor(model => model.DesignationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MakeDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+     
+        <td>
+            @Html.DisplayFor(modelItem => item.DesignationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MakeDate)
+        </td>
+        <td>
+            @Html.ActionLink("Update", "Update", new { id=item.DegId }) |
+            @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.DegId })*@
+        </td>
+    </tr>
+}
+
+</table>

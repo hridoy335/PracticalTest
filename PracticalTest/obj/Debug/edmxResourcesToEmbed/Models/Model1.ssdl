@@ -57,6 +57,18 @@
     <Property Name="EmployeeId" Type="int" Nullable="false" />
     <Property Name="MakeDate" Type="date" Nullable="false" />
   </EntityType>
+  <Association Name="FK_TblEmployee_TblDesignation">
+    <End Role="TblDesignation" Type="Self.TblDesignation" Multiplicity="1" />
+    <End Role="TblEmployee" Type="Self.TblEmployee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblDesignation">
+        <PropertyRef Name="DegId" />
+      </Principal>
+      <Dependent Role="TblEmployee">
+        <PropertyRef Name="DegId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_TblEmployee_TblEmployee">
     <End Role="TblDesignation" Type="Self.TblDesignation" Multiplicity="1" />
     <End Role="TblEmployee" Type="Self.TblEmployee" Multiplicity="*" />
@@ -131,6 +143,10 @@
     <EntitySet Name="TblEmployee" EntityType="Self.TblEmployee" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TblFileUpload" EntityType="Self.TblFileUpload" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TblInfo" EntityType="Self.TblInfo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_TblEmployee_TblDesignation" Association="Self.FK_TblEmployee_TblDesignation">
+      <End Role="TblDesignation" EntitySet="TblDesignation" />
+      <End Role="TblEmployee" EntitySet="TblEmployee" />
+    </AssociationSet>
     <AssociationSet Name="FK_TblEmployee_TblEmployee" Association="Self.FK_TblEmployee_TblEmployee">
       <End Role="TblDesignation" EntitySet="TblDesignation" />
       <End Role="TblEmployee" EntitySet="TblEmployee" />

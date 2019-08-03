@@ -21,7 +21,7 @@ namespace PracticalTest.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Attendance Date")]
+        [Display(Name = "Make Date")]
         public System.DateTime MakeDate { get; set; }
     }
    

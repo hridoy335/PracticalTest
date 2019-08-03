@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DropdownController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -230,9 +231,15 @@
     <Content Include="Views\Home\Designation.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\YesLogin.cshtml" />
+    <Content Include="Views\Home\Designationview.cshtml" />
+    <Content Include="Views\Home\Update.cshtml" />
+    <Content Include="Views\Home\EmployeeView.cshtml" />
+    <Content Include="Views\Home\EmpUpdate.cshtml" />
+    <Content Include="Views\Home\EmpDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Dropdown\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PracticalTest.Models;
@@ -15,6 +17,9 @@ namespace PracticalTest.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Employee insert form
+        /// </summary>
         [HttpGet]
         public ActionResult Employee()  
         {
@@ -53,11 +58,12 @@ namespace PracticalTest.Controllers
 
                 if (ModelState.IsValid)
                 {
+                    tblEmployee.MakeDate = DateTime.Now;
                     tblEmployee.DegId =Convert.ToInt32(DegId);
                     db.TblEmployees.Add(tblEmployee);
                     db.SaveChanges();
                     ViewBag.Employee = "Employee Registration Successfully";
-                    return RedirectToAction("Index","Home");
+                    return RedirectToAction("EmployeeView", "Home");
                 }
 
             }
@@ -66,6 +72,60 @@ namespace PracticalTest.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Employee information view
+        /// </summary>
+        public ActionResult EmployeeView()
+        {
+            return View(db.TblEmployees.ToList());
+        }
+
+        //employee information update
+        [HttpGet]
+        public ActionResult EmpUpdate(int ? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            //TblDesignation tblDesignation = db.TblDesignations.Find(id);
+            TblEmployee tblEmployee = db.TblEmployees.Find(id);
+            if (tblEmployee == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tblEmployee);
+        }
+
+
+        // Employee information delete
+        [HttpGet]
+        public ActionResult EmpDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+        
+            TblEmployee tblEmployee = db.TblEmployees.Find(id);
+            if (tblEmployee == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tblEmployee);
+        }
+
+        [HttpPost]
+        public ActionResult EmpDelete(int id)
+        {
+            TblEmployee tblEmployee = db.TblEmployees.Find(id);
+            db.TblEmployees.Remove(tblEmployee);
+            db.SaveChanges();
+            return RedirectToAction("EmployeeView","Home");
+        }
+
+        //Insert designation form
         [HttpGet]
         public ActionResult Designation()
         {
@@ -75,6 +135,7 @@ namespace PracticalTest.Controllers
         {
             if (ModelState.IsValid)
             {
+                tblDesignation.MakeDate = DateTime.Now;
                 db.TblDesignations.Add(tblDesignation);
                 db.SaveChanges();
                 return RedirectToAction("DesignationAdd");
@@ -83,6 +144,47 @@ namespace PracticalTest.Controllers
           
         }
 
+        // Designation information view 
+        [HttpGet]
+        public ActionResult Designationview()
+        {
+            return View(db.TblDesignations.ToList());
+        }
+
+        // update designation information 
+        public ActionResult Update(int? id, DateTime? date)
+        {
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+      
+
+            TblDesignation tblDesignation = db.TblDesignations.Find(id);
+            if (tblDesignation == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tblDesignation);
+        }
+
+        [HttpPost]
+
+        public ActionResult Update(DateTime? date, TblDesignation tblDesignation)
+        {
+
+            if (ModelState.IsValid)
+            {
+                tblDesignation.MakeDate =Convert.ToDateTime(date);
+                db.Entry(tblDesignation).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Designationview");
+            }
+            return View(tblDesignation);
+        }
+
+        // login page
         [HttpGet]
         public ActionResult Login()
         {

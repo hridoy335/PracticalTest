@@ -31,14 +31,15 @@ namespace PracticalTest.Models
         //[MinLength(6, ErrorMessage = "User Contact can't be less than 6 characters")]
         [MaxLength(20, ErrorMessage = "Contact can't be more than 12 characters")]
         [DataType(DataType.PhoneNumber)]
-        [RegularExpression(@"^(((\+|00)?880)|0)(\d){10}$", ErrorMessage = "Name is not correct format")]
+        [RegularExpression(@"^(((\+|00)?880)|0)(\d){10}$", ErrorMessage = "Contact is not correct format")]
         [Display(Name = "Contact")]
         public string EmployeeContactNo { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Attendance Date")]
+        [Display(Name = "Make Date")]
         public System.DateTime MakeDate { get; set; }
+
         [Required]
         //[MinLength(4, ErrorMessage = "User Password can't be less than 4 characters")]
         [MaxLength(50, ErrorMessage = "Password can't be more than 50 characters")]

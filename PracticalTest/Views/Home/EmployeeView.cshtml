@@ -1,0 +1,70 @@
+﻿@model IEnumerable<PracticalTest.Models.TblEmployee>
+
+@{
+    ViewBag.Title = "EmployeeView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>EmployeeView</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Employee", "Home")
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.EmpId)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DegId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeContactNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MakeDate)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.EmpId)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TblDesignation.DesignationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeContactNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MakeDate)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>*@
+        <td>
+            @*@Html.ActionLink("Update", "EmpUpdate", new { id=item.EmpId }) |*@
+            @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+            @Html.ActionLink("Delete", "EmpDelete", new { id=item.EmpId })
+        </td>
+    </tr>
+}
+
+</table>
